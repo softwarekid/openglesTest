@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B002E63C1EF0EA0D002277D6"
-               BuildableName = "cppTest"
-               BlueprintName = "cppTest"
-               ReferencedContainer = "container:cppTest.xcodeproj">
+               BuildableName = "openglESTest"
+               BlueprintName = "openglESTest"
+               ReferencedContainer = "container:openglESTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B002E63C1EF0EA0D002277D6"
-            BuildableName = "cppTest"
-            BlueprintName = "cppTest"
-            ReferencedContainer = "container:cppTest.xcodeproj">
+            BuildableName = "openglESTest"
+            BlueprintName = "openglESTest"
+            ReferencedContainer = "container:openglESTest.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -46,7 +46,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
+      useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "/Users/wangyi/Documents/project/reference/openglESTest/openglESTest"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -56,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B002E63C1EF0EA0D002277D6"
-            BuildableName = "cppTest"
-            BlueprintName = "cppTest"
-            ReferencedContainer = "container:cppTest.xcodeproj">
+            BuildableName = "openglESTest"
+            BlueprintName = "openglESTest"
+            ReferencedContainer = "container:openglESTest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B002E63C1EF0EA0D002277D6"
-            BuildableName = "cppTest"
-            BlueprintName = "cppTest"
-            ReferencedContainer = "container:cppTest.xcodeproj">
+            BuildableName = "openglESTest"
+            BlueprintName = "openglESTest"
+            ReferencedContainer = "container:openglESTest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

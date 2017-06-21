@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:cppTest.xcodeproj">
+      location = "self:/Users/wangyi/Documents/project/reference/openglESTest/openglESTest.xcodeproj">
    </FileRef>
 </Workspace>
