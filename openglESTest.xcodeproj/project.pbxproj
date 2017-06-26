@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B0177D9A1EFA819D007042F5 /* GLBindBufferGuard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0177D981EFA819D007042F5 /* GLBindBufferGuard.cpp */; };
+		B02490AB1EFB700F002EFB32 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B02490A91EFB700F002EFB32 /* Renderer.cpp */; };
 		B02BD5881EF91FE400B99F24 /* GlslProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B02BD5861EF91FE400B99F24 /* GlslProgram.cpp */; };
 		B02BD58B1EF9210C00B99F24 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B02BD5891EF9210C00B99F24 /* Common.cpp */; };
 		B053036F1EF3E28B00C9625F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B053036E1EF3E28B00C9625F /* OpenGL.framework */; };
@@ -36,6 +37,8 @@
 		B002E63D1EF0EA0D002277D6 /* openglESTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = openglESTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0177D981EFA819D007042F5 /* GLBindBufferGuard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBindBufferGuard.cpp; sourceTree = "<group>"; };
 		B0177D991EFA819D007042F5 /* GLBindBufferGuard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLBindBufferGuard.hpp; sourceTree = "<group>"; };
+		B02490A91EFB700F002EFB32 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
+		B02490AA1EFB700F002EFB32 /* Renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
 		B02BD5861EF91FE400B99F24 /* GlslProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GlslProgram.cpp; path = openglESTest/GlslProgram.cpp; sourceTree = "<group>"; };
 		B02BD5871EF91FE400B99F24 /* GlslProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GlslProgram.hpp; path = openglESTest/GlslProgram.hpp; sourceTree = "<group>"; };
 		B02BD5891EF9210C00B99F24 /* Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Common.cpp; path = openglESTest/Common.cpp; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 				B0E9082E1EFA6BFA0016C425 /* QuadMesh.hpp */,
 				B0177D981EFA819D007042F5 /* GLBindBufferGuard.cpp */,
 				B0177D991EFA819D007042F5 /* GLBindBufferGuard.hpp */,
+				B02490A91EFB700F002EFB32 /* Renderer.cpp */,
+				B02490AA1EFB700F002EFB32 /* Renderer.hpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				B0E9082F1EFA6BFA0016C425 /* QuadMesh.cpp in Sources */,
 				B0177D9A1EFA819D007042F5 /* GLBindBufferGuard.cpp in Sources */,
 				B0E9082C1EFA21A30016C425 /* GLFWWindow.cpp in Sources */,
+				B02490AB1EFB700F002EFB32 /* Renderer.cpp in Sources */,
 				B05C2D291EF7779C00FFF736 /* main.cpp in Sources */,
 				B0E908291EFA11C30016C425 /* Mesh.cpp in Sources */,
 				B02BD58B1EF9210C00B99F24 /* Common.cpp in Sources */,

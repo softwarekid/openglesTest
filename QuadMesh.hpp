@@ -13,10 +13,12 @@
 
 class QuadMesh : public Mesh
 {
+private:
+    GLfloat* data = nullptr;
 public:
-    QuadMesh(){};
-    void Setup() override;
-    void Draw() override;
+    QuadMesh();
+    GLenum GetPrimitiveType() override;
+    int GetVerticeCount() override;
 };
 
 #endif /* QuadMesh_hpp */

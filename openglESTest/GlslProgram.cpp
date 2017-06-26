@@ -15,22 +15,16 @@
 
 GlslProgram::GlslProgram(const std::string& vertSrcFile_, const std::string& fragSrcFile_, const std::string& geomSource_)  
 {
-    InitProgram(vertSrcFile_ , fragSrcFile_, geomSource_);
-}
-
-
-void GlslProgram::InitProgram(const std::string& vertSrcFile,  const std::string& fragSrcFile, const std::string& geomSrcFile )
-{
     hProg = glCreateProgram();
     GLuint hVerShader = glCreateShader(GL_VERTEX_SHADER);
     GLuint hFragShader = glCreateShader(GL_FRAGMENT_SHADER);
-    LoadShaderFile(hVerShader, vertSrcFile);
-    LoadShaderFile(hFragShader, fragSrcFile);
+    LoadShaderFile(hVerShader, vertSrcFile_);
+    LoadShaderFile(hFragShader, fragSrcFile_);
     GLuint hGeomShader = 0;
-    if (geomSrcFile != "")
+    if (geomSource_!= "")
     {
         GLuint hGeomShader = glCreateShader(GL_GEOMETRY_SHADER);
-        LoadShaderFile(hGeomShader, geomSrcFile);
+        LoadShaderFile(hGeomShader, geomSource_);
         glAttachShader(hProg, hGeomShader);
     }
     
@@ -79,6 +73,17 @@ void GlslProgram::LoadShaderFile(GLuint hShader, std::string fileName)
     file.close();
 }
 
+void GlslProgram::InitAttrLocations(const std::vector<std::string>& attrNames_)
+{
+    attrLocations.reserve(attrNames_.size());
+    for (int i = 0; i < attrNames_.size(); i++)
+    {
+        GLint loc = glGetAttribLocation(hProg, attrNames_[i].c_str());
+        attrLocations.push_back(loc);
+        nameLocMap[attrNames_[i]] = loc;
+    }
+}
+
 GLuint GlslProgram::GetUniformLocation(const std::string& uniformName)
 {
     return glGetUniformLocation(hProg, uniformName.c_str());
@@ -86,10 +91,66 @@ GLuint GlslProgram::GetUniformLocation(const std::string& uniformName)
 
 GLuint GlslProgram::GetAttributeLocation(const std::string& attrName)
 {
-    return glGetAttribLocation(hProg, attrName.c_str());
+    auto iter = nameLocMap.find(attrName);
+    return iter == nameLocMap.end()? -1 : iter->second;
 }
 
 void GlslProgram::Use()
 {
     glUseProgram(hProg);
+}
+
+void GlslProgram::Register(Renderer& renderer)
+{
+    renderer.SetProgram(shared_from_this());
+}
+
+void GlslProgram::Unregister(Renderer& renderer)
+{
+    renderer.SetProgram(nullptr);
+}
+
+GLint GlslProgram::GetLocByIndex(int index)
+{
+    return attrLocations[index];
+}
+
+void GlslProgram::SetFloat(const std::string& name, GLfloat value)
+{
+    SetFloat(GetUniformLocation(name), value);
+}
+
+void GlslProgram::SetFloat(int locIndex, GLfloat value)
+{
+    glUniform1f(locIndex, value);
+}
+    
+void GlslProgram::SetInt(const std::string& name, GLint value)
+{
+    SetInt(GetUniformLocation(name), value);
+}
+
+void GlslProgram::SetInt(int locIndex, GLint value)
+{
+    glUniform1i(locIndex, value);
+}
+    
+void GlslProgram::SetMatrix(const std::string& name, GLfloat* value)
+{
+    SetMatrix(GetUniformLocation(name), value);
+}
+
+void GlslProgram::SetMatrix(int locIndex, GLfloat* value)
+{
+    glUniformMatrix4fv(locIndex, 1, GL_FALSE, value);
+}
+    
+void GlslProgram::SetVector(const std::string& name, GLfloat* value)
+{
+    SetVector(GetUniformLocation(name), value);
+}
+
+void GlslProgram::SetVector(int locIndex, GLfloat* value)
+{
+    glUniform3fv(locIndex, 1, value);
 }

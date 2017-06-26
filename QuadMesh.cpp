@@ -11,33 +11,33 @@
 #include "GLBindBufferGuard.hpp"
 #include "Common.hpp"
 
-void QuadMesh::Setup()
+
+
+QuadMesh::QuadMesh()
 {
-    GLfloat quadVertices[] = {
-        			// Positions        // Texture Coords
-        			0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-        			0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-        			1.0f, 1.0f, 0.0f, 1.0f, 1.0f,
-        			1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-        		};
+    static GLfloat vertices[] = {
+            			// Positions        // Texture Coords
+            			0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+            			0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+            			1.0f, 1.0f, 0.0f, 1.0f, 1.0f,
+            1.0f, 0.0f, 0.0f, 1.0f, 0.0f,};
     
-    if (mVertexVBO == 0) {
-        glGenBuffers(1, &mVertexVBO);
-        
-        GLBindBufferGuard bindGuard(GL_ARRAY_BUFFER, mVertexVBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices),&quadVertices, GL_STATIC_DRAW);
-        
-        glCheckError();
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
-        glEnableVertexAttribArray(1);
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
-        
-    }
+    data = vertices;
+    
+    VBO::VSAttributeArray vsAttributes;
+    vsAttributes.reserve(2);
+    vsAttributes.emplace_back(0, 3, 5 * sizeof(GLfloat), 0);
+    vsAttributes.emplace_back(1, 2, 5 * sizeof(GLfloat), 3 * sizeof(GLfloat));
+    
+    VBOVec.emplace_back(data, sizeof(vertices), GL_STATIC_DRAW , std::move(vsAttributes));
 }
 
-void QuadMesh::Draw()
+int QuadMesh::GetVerticeCount()
 {
-    GLBindBufferGuard bindGuard(GL_ARRAY_BUFFER, mVertexVBO);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    return 4;
+}
+
+GLenum QuadMesh::GetPrimitiveType()
+{
+    return GL_TRIANGLE_STRIP;
 }

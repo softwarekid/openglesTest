@@ -1,6 +1,7 @@
 //
 //  Common.cpp
 //  openglESTest
+
 //
 //  Created by 王一 on 20/06/2017.
 //  Copyright © 2017 王一. All rights reserved.
@@ -10,7 +11,7 @@
 #include <iostream>
 #include <SOIL/SOIL.h>
 
-GLint TextureFromFile(const char* path)
+GLint LoadAndSetDefaultTexture(const char* path)
 {
     //Generate texture ID and load texture data
     std::string filename = std::string(path);
