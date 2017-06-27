@@ -115,6 +115,27 @@ GLint GlslProgram::GetLocByIndex(int index)
     return attrLocations[index];
 }
 
+//void GlslProgram::SetBlendActive(bool isEnabled)
+//{
+//    blendEnabled = isEnabled;
+//}
+//
+//void GlslProgram::SetBlendFunc(GLenum srcFactor, GLenum dstFactor)
+//{
+//    srcBlendFactor = srcFactor;
+//    dstBlendFactor = dstFactor;
+//}
+//    
+//bool GlslProgram::IsBlendEnabled()
+//{
+//    return blendEnabled;
+//}
+//
+//std::tuple<GLenum, GLenum> GlslProgram::GetBlendFunc()
+//{
+//    return std::make_tuple(srcBlendFactor, dstBlendFactor);
+//}
+
 void GlslProgram::SetFloat(const std::string& name, GLfloat value)
 {
     SetFloat(GetUniformLocation(name), value);

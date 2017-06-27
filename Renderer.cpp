@@ -19,6 +19,12 @@ void Renderer::SetMesh(MeshPtr mesh_)
     this->mesh = mesh_;
 }
 
+void UpdateRenderState()
+{
+    
+}
+
+
 void Renderer::UpdateBindingAttribtue()
 {
     if(mesh != nullptr && program != nullptr)

@@ -24,7 +24,10 @@ private:
     
 public:
     Renderer() = default;
+    
+    void UpdateRenderState();
     void UpdateBindingAttribtue();
+    void UpdateBindingUniform();
     void SetProgram(GlslProgramPtr program);
     void SetMesh(MeshPtr mesh);
     void Draw() const;

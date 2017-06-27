@@ -1,11 +1,11 @@
 uniform mat4 MVP;
-attribute vec3 vCol;
-attribute vec2 vPos;
+attribute vec3 vPos;
+attribute vec2 vTex;
 
-varying vec3 color;
+varying vec2 v2fTexCoord;
 
 void main()
 {
-    gl_Position = MVP * vec4(vPos, 0.0, 1.0);
-    color = vCol;
+    gl_Position = MVP * vec4(vPos,  1.0);
+    v2fTexCoord = vec2(1.0 - vTex);
 }

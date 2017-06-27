@@ -6,6 +6,7 @@
 
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <chrono>
 #include "GlslProgram.hpp"
 #include "GLFWWindow.hpp"
 #include "Mesh.hpp"
@@ -26,7 +27,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 int main(void)
 {
-    GLFWWindow window{640, 480, "Simple example"};
+    GLFWWindow window{256, 256, "Simple example"};
     window.SetErrorHandleFunc(error_callback);
     window.SetKeyboardFunc(key_callback);
     
@@ -42,14 +43,21 @@ int main(void)
     auto mesh = std::make_shared<QuadMesh>();
     mesh->Register(quadRenderer);
     
-    GLint mvp_location;
-    mvp_location = prog->GetUniformLocation("MVP");
-    
-    prog->InitAttrLocations({"vPos", "vCol"});
+    prog->InitAttrLocations({"vPos", "vTex"});
     quadRenderer.UpdateBindingAttribtue();
     
-    glCheckError();
+    GLint textureId = LoadAndSetDefaultTexture("textures/BakedSpriteTexture.png");
+    prog->SetInt("albedo", 0);
+    prog->SetInt("rowFrameNum", 5);
+    prog->SetInt("colFrameNum", 5);
+    prog->SetFloat("speed", 30.0f);
     
+    
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+//    std::chrono::time_point<std::chrono::system_clock> startTime;
+    auto startTime = std::chrono::system_clock::now();
     while (!window.ShouldClose())
     {
         int width, height;
@@ -59,7 +67,11 @@ int main(void)
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         
-        glUniformMatrix4fv(mvp_location, 1, GL_FALSE, glm::value_ptr(mvp));
+        std::chrono::duration<double> eplasedTime = std::chrono::system_clock::now() - startTime;
+        prog->SetFloat("time_", eplasedTime.count());
+        
+        prog->SetMatrix("MVP", glm::value_ptr(mvp));
+        glBindTexture(GL_TEXTURE_2D, textureId);
         quadRenderer.Draw();
         
         window.SwapBuffer();

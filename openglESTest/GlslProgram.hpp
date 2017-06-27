@@ -32,6 +32,15 @@ public:
     void Unregister(Renderer& rendererPtr);
     GLint GetLocByIndex(int index);
     
+    // rendering state
+    
+    // the default blend factor is GL_SRC_ALPH and GL_ONE_MINUS_SRC_ALPHA
+//    void SetBlendActive(bool isEnabled);
+//    void SetBlendFunc(GLenum srcFactor, GLenum dstFactor);
+//    
+//    bool IsBlendEnabled();
+//    std::tuple<GLenum, GLenum> GetBlendFunc();
+    
     
     // set uniform values
     void SetFloat(const std::string& name, GLfloat value);
@@ -48,7 +57,13 @@ public:
     
 private:
     void LoadShaderFile(GLuint hShader, std::string fileName);
+    
     GLuint hProg = 0;
+    
+    bool blendEnabled = false;
+    GLenum srcBlendFactor = GL_SRC_ALPHA;
+    GLenum dstBlendFactor = GL_ONE_MINUS_SRC_ALPHA;
+    
     
     // 这个vector中atrrLocation的顺序默认对应Mesh中定义的顺序
     // 如果要改对应关系，建议改这个vector中的顺序，将Mesh中的顺序视为不变

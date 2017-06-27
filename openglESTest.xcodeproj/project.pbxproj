@@ -250,6 +250,7 @@
 				OTHER_LDFLAGS = (
 					"-lglfw3",
 					"-lGLEW",
+					"-lSOIL",
 				);
 				SDKROOT = macosx;
 			};
@@ -297,6 +298,7 @@
 				OTHER_LDFLAGS = (
 					"-lglfw3",
 					"-lGLEW",
+					"-lSOIL",
 				);
 				SDKROOT = macosx;
 			};
