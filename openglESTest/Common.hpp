@@ -58,4 +58,10 @@ struct VBO
     {}
 };
 
+enum class GLState
+{
+    BLEND,
+    DEPTHTEST,
+};
+
 #endif /* Common_hpp */

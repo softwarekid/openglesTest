@@ -47,11 +47,11 @@ int main(void)
     quadRenderer.UpdateBindingAttribtue();
     
     GLint textureId = LoadAndSetDefaultTexture("textures/BakedSpriteTexture.png");
+    
     prog->SetInt("albedo", 0);
     prog->SetInt("rowFrameNum", 5);
     prog->SetInt("colFrameNum", 5);
     prog->SetFloat("speed", 30.0f);
-    
     
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -79,6 +79,3 @@ int main(void)
     }
     exit(EXIT_SUCCESS);
 }
-
-
-

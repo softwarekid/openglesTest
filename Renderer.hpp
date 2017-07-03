@@ -18,14 +18,13 @@ private:
     MeshPtr mesh = nullptr;
     GlslProgramPtr program = nullptr;
     
-    
     // OGL buffer index
     std::vector<GLuint> VBOIndices;
     
 public:
     Renderer() = default;
     
-    void UpdateRenderState();
+    void SetGLState();
     void UpdateBindingAttribtue();
     void UpdateBindingUniform();
     void SetProgram(GlslProgramPtr program);

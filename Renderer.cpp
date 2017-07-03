@@ -19,11 +19,10 @@ void Renderer::SetMesh(MeshPtr mesh_)
     this->mesh = mesh_;
 }
 
-void UpdateRenderState()
+void Renderer::SetGLState()
 {
     
 }
-
 
 void Renderer::UpdateBindingAttribtue()
 {
