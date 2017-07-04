@@ -13,8 +13,11 @@
 #include "Common.hpp"
 
 
-GlslProgram::GlslProgram(const std::string& vertSrcFile_, const std::string& fragSrcFile_, const std::string& geomSource_)  
+uint32_t GlslProgram::curId = 0;
+
+GlslProgram::GlslProgram(const std::string& vertSrcFile_, const std::string& fragSrcFile_, const std::string& geomSource_)
 {
+    id = generateGlobalId();
     hProg = glCreateProgram();
     GLuint hVerShader = glCreateShader(GL_VERTEX_SHADER);
     GLuint hFragShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -40,7 +43,8 @@ GlslProgram::GlslProgram(const std::string& vertSrcFile_, const std::string& fra
         glGetProgramInfoLog(hProg, 512, NULL, infoLog);
         std::cout<<infoLog<<std::endl;
     }
-    glUseProgram(hProg);
+    
+    Reset();
     glDeleteShader(hVerShader);
     glDeleteShader(hFragShader);
     glDeleteShader(hGeomShader);
@@ -97,7 +101,16 @@ GLuint GlslProgram::GetAttributeLocation(const std::string& attrName)
 
 void GlslProgram::Use()
 {
-    glUseProgram(hProg);
+    if (curId != id)
+    {
+        curId = id;
+        glUseProgram(hProg);
+    }
+}
+
+void GlslProgram::Reset()
+{
+    glUseProgram(0);
 }
 
 void GlslProgram::Register(Renderer& renderer)
@@ -143,6 +156,7 @@ void GlslProgram::SetFloat(const std::string& name, GLfloat value)
 
 void GlslProgram::SetFloat(int locIndex, GLfloat value)
 {
+    Use();
     glUniform1f(locIndex, value);
 }
     
@@ -153,6 +167,7 @@ void GlslProgram::SetInt(const std::string& name, GLint value)
 
 void GlslProgram::SetInt(int locIndex, GLint value)
 {
+    Use();
     glUniform1i(locIndex, value);
 }
     
@@ -163,6 +178,7 @@ void GlslProgram::SetMatrix(const std::string& name, GLfloat* value)
 
 void GlslProgram::SetMatrix(int locIndex, GLfloat* value)
 {
+    Use();
     glUniformMatrix4fv(locIndex, 1, GL_FALSE, value);
 }
     
@@ -173,5 +189,6 @@ void GlslProgram::SetVector(const std::string& name, GLfloat* value)
 
 void GlslProgram::SetVector(int locIndex, GLfloat* value)
 {
+    Use();
     glUniform3fv(locIndex, 1, value);
 }

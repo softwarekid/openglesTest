@@ -19,8 +19,10 @@
 class GlslProgram : public std::enable_shared_from_this<GlslProgram>
 {
 public:
+    
     GlslProgram(const std::string& vertexSource_,  const std::string& fragSource_, const std::string& geomSource_= "");
     void Use();
+    void Reset();
     
     void InitAttrLocations(const std::vector<std::string>& attrNames_);
     
@@ -56,6 +58,11 @@ public:
     void SetVector(int locIndex, GLfloat* value);
     
 private:
+    
+    static uint32_t generateGlobalId(){static uint32_t id = 1; return id++;}
+    static uint32_t curId;
+    
+    int id;
     void LoadShaderFile(GLuint hShader, std::string fileName);
     
     GLuint hProg = 0;
