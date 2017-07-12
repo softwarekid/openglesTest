@@ -14,13 +14,13 @@
 #include <vector>
 #include <unordered_map>
 #include "Renderer.hpp"
+#include <glm/glm.hpp>
 
 // 由于继承了enable_shared_from_this，所以glslProgram只能通过shared_ptr来调用。
 class GlslProgram : public std::enable_shared_from_this<GlslProgram>
 {
 public:
     
-    GlslProgram(const std::string& vertexSource_,  const std::string& fragSource_, const std::string& geomSource_= "");
     void Use();
     void Reset();
     
@@ -44,6 +44,8 @@ public:
 //    std::tuple<GLenum, GLenum> GetBlendFunc();
     
     
+    virtual void Prepare(const glm::mat4& mvp) = 0;
+    
     // set uniform values
     void SetFloat(const std::string& name, GLfloat value);
     void SetFloat(int locIndex, GLfloat value);
@@ -51,11 +53,15 @@ public:
     void SetInt(const std::string& name, GLint value);
     void SetInt(int locIndex, GLint value);
     
-    void SetMatrix(const std::string& name, GLfloat* value);
-    void SetMatrix(int locIndex, GLfloat* value);
+    void SetMatrix(const std::string& name, const glm::mat4& value);
+    void SetMatrix(int locIndex, const glm::mat4& value);
     
-    void SetVector(const std::string& name, GLfloat* value);
-    void SetVector(int locIndex, GLfloat* value);
+    void SetVector(const std::string& name, const glm::vec4& value);
+    void SetVector(int locIndex, const glm::vec4& value);
+    
+    
+protected:
+    GlslProgram(const std::string& vertexSource_,  const std::string& fragSource_, const std::string& geomSource_= "");
     
 private:
     
@@ -67,9 +73,9 @@ private:
     
     GLuint hProg = 0;
     
-    bool blendEnabled = false;
-    GLenum srcBlendFactor = GL_SRC_ALPHA;
-    GLenum dstBlendFactor = GL_ONE_MINUS_SRC_ALPHA;
+//    bool blendEnabled = false;
+//    GLenum srcBlendFactor = GL_SRC_ALPHA;
+//    GLenum dstBlendFactor = GL_ONE_MINUS_SRC_ALPHA;
     
     
     // 这个vector中atrrLocation的顺序默认对应Mesh中定义的顺序

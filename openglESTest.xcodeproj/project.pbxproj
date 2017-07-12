@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B00C399A1F0B36E3004EE24A /* UVAnimationProg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00C39981F0B36E3004EE24A /* UVAnimationProg.cpp */; };
+		B00C39A11F0B7880004EE24A /* TexFilterProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00C399F1F0B7880004EE24A /* TexFilterProgram.cpp */; };
 		B0177D9A1EFA819D007042F5 /* GLBindBufferGuard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0177D981EFA819D007042F5 /* GLBindBufferGuard.cpp */; };
 		B02490AB1EFB700F002EFB32 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B02490A91EFB700F002EFB32 /* Renderer.cpp */; };
 		B02BD5881EF91FE400B99F24 /* GlslProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B02BD5861EF91FE400B99F24 /* GlslProgram.cpp */; };
@@ -35,6 +37,10 @@
 
 /* Begin PBXFileReference section */
 		B002E63D1EF0EA0D002277D6 /* openglESTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = openglESTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00C39981F0B36E3004EE24A /* UVAnimationProg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UVAnimationProg.cpp; sourceTree = "<group>"; };
+		B00C39991F0B36E3004EE24A /* UVAnimationProg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UVAnimationProg.hpp; sourceTree = "<group>"; };
+		B00C399F1F0B7880004EE24A /* TexFilterProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TexFilterProgram.cpp; sourceTree = "<group>"; };
+		B00C39A01F0B7880004EE24A /* TexFilterProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TexFilterProgram.hpp; sourceTree = "<group>"; };
 		B0177D981EFA819D007042F5 /* GLBindBufferGuard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBindBufferGuard.cpp; sourceTree = "<group>"; };
 		B0177D991EFA819D007042F5 /* GLBindBufferGuard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLBindBufferGuard.hpp; sourceTree = "<group>"; };
 		B02490A91EFB700F002EFB32 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
@@ -115,6 +121,10 @@
 				B0177D991EFA819D007042F5 /* GLBindBufferGuard.hpp */,
 				B02490A91EFB700F002EFB32 /* Renderer.cpp */,
 				B02490AA1EFB700F002EFB32 /* Renderer.hpp */,
+				B00C39981F0B36E3004EE24A /* UVAnimationProg.cpp */,
+				B00C39991F0B36E3004EE24A /* UVAnimationProg.hpp */,
+				B00C399F1F0B7880004EE24A /* TexFilterProgram.cpp */,
+				B00C39A01F0B7880004EE24A /* TexFilterProgram.hpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -191,9 +201,11 @@
 				B0E9082F1EFA6BFA0016C425 /* QuadMesh.cpp in Sources */,
 				B0177D9A1EFA819D007042F5 /* GLBindBufferGuard.cpp in Sources */,
 				B0E9082C1EFA21A30016C425 /* GLFWWindow.cpp in Sources */,
+				B00C39A11F0B7880004EE24A /* TexFilterProgram.cpp in Sources */,
 				B02490AB1EFB700F002EFB32 /* Renderer.cpp in Sources */,
 				B05C2D291EF7779C00FFF736 /* main.cpp in Sources */,
 				B0E908291EFA11C30016C425 /* Mesh.cpp in Sources */,
+				B00C399A1F0B36E3004EE24A /* UVAnimationProg.cpp in Sources */,
 				B02BD58B1EF9210C00B99F24 /* Common.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

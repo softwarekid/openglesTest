@@ -11,6 +11,7 @@
 #include <fstream>
 #include <iostream>
 #include "Common.hpp"
+#include <glm/gtc/type_ptr.hpp>
 
 
 uint32_t GlslProgram::curId = 0;
@@ -44,7 +45,6 @@ GlslProgram::GlslProgram(const std::string& vertSrcFile_, const std::string& fra
         std::cout<<infoLog<<std::endl;
     }
     
-    Reset();
     glDeleteShader(hVerShader);
     glDeleteShader(hFragShader);
     glDeleteShader(hGeomShader);
@@ -90,7 +90,12 @@ void GlslProgram::InitAttrLocations(const std::vector<std::string>& attrNames_)
 
 GLuint GlslProgram::GetUniformLocation(const std::string& uniformName)
 {
-    return glGetUniformLocation(hProg, uniformName.c_str());
+    GLint locIndex = glGetUniformLocation(hProg, uniformName.c_str());
+    if(locIndex < 0)
+    {
+        std::cout<<"cannot find uniform name: "<<uniformName<<std::endl;
+    }
+    return locIndex;
 }
 
 GLuint GlslProgram::GetAttributeLocation(const std::string& attrName)
@@ -110,6 +115,7 @@ void GlslProgram::Use()
 
 void GlslProgram::Reset()
 {
+    curId = 0;
     glUseProgram(0);
 }
 
@@ -171,24 +177,24 @@ void GlslProgram::SetInt(int locIndex, GLint value)
     glUniform1i(locIndex, value);
 }
     
-void GlslProgram::SetMatrix(const std::string& name, GLfloat* value)
+void GlslProgram::SetMatrix(const std::string& name, const glm::mat4& value)
 {
     SetMatrix(GetUniformLocation(name), value);
 }
 
-void GlslProgram::SetMatrix(int locIndex, GLfloat* value)
+void GlslProgram::SetMatrix(int locIndex, const glm::mat4& value)
 {
     Use();
-    glUniformMatrix4fv(locIndex, 1, GL_FALSE, value);
+    glUniformMatrix4fv(locIndex, 1, GL_FALSE, glm::value_ptr(value));
 }
-    
-void GlslProgram::SetVector(const std::string& name, GLfloat* value)
+
+void GlslProgram::SetVector(const std::string& name, const glm::vec4& value)
 {
     SetVector(GetUniformLocation(name), value);
 }
 
-void GlslProgram::SetVector(int locIndex, GLfloat* value)
+void GlslProgram::SetVector(int locIndex, const glm::vec4& value)
 {
     Use();
-    glUniform3fv(locIndex, 1, value);
+    glUniform3fv(locIndex, 1, glm::value_ptr(value));
 }

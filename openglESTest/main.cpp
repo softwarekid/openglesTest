@@ -8,6 +8,7 @@
 #include <iostream>
 #include <chrono>
 #include "GlslProgram.hpp"
+#include "UVAnimationProg.hpp"
 #include "GLFWWindow.hpp"
 #include "Mesh.hpp"
 #include "QuadMesh.hpp"
@@ -38,26 +39,23 @@ int main(void)
     }
     
     Renderer quadRenderer;
-    auto prog = std::make_shared<GlslProgram>("shader/test.vert", "shader/test.frag");
+//    auto prog = std::make_shared<UVAnimationProg>("shader/test.vert", "shader/test.frag");
+    auto prog = std::make_shared<UVAnimationProg>("shader/test.vert", "shader/test.frag");
     prog->Register(quadRenderer);
     auto mesh = std::make_shared<QuadMesh>();
     mesh->Register(quadRenderer);
     
-    prog->InitAttrLocations({"vPos", "vTex"});
     quadRenderer.UpdateBindingAttribtue();
     
-    GLint textureId = LoadAndSetDefaultTexture("textures/BakedSpriteTexture.png");
+    GLint textureId = LoadAndSetDefaultTexture("textures/Effect_08_8x4-32.png");
     
-    prog->SetInt("albedo", 0);
-    prog->SetInt("rowFrameNum", 5);
-    prog->SetInt("colFrameNum", 5);
-    prog->SetFloat("speed", 30.0f);
     
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glBindTexture(GL_TEXTURE_2D, textureId);
     
-//    std::chrono::time_point<std::chrono::system_clock> startTime;
-    auto startTime = std::chrono::system_clock::now();
+    glCheckError();
+    
     while (!window.ShouldClose())
     {
         int width, height;
@@ -67,11 +65,9 @@ int main(void)
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         
-        std::chrono::duration<double> eplasedTime = std::chrono::system_clock::now() - startTime;
-        prog->SetFloat("time_", eplasedTime.count());
         
-        prog->SetMatrix("MVP", glm::value_ptr(mvp));
-        glBindTexture(GL_TEXTURE_2D, textureId);
+        glActiveTexture(GL_TEXTURE0);
+        prog->Prepare(mvp);
         quadRenderer.Draw();
         
         window.SwapBuffer();
